@@ -1,0 +1,15 @@
+static
+int8_t
+(
+safe_unary_minus_func_int8_t_s
+)
+(
+int8_t
+si
+)
+{
+return
+-
+si
+;
+}

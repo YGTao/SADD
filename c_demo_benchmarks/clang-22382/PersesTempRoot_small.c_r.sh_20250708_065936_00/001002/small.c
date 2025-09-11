@@ -1,0 +1,10 @@
+typedef
+unsigned
+int
+size_t
+;
+typedef
+signed
+char
+int8_t
+;

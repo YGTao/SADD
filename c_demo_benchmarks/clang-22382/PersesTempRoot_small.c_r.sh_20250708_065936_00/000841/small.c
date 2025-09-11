@@ -1,0 +1,6 @@
+static
+int64_t
+g_1238
+=
+0xEF73CDC07DB9FD50LL
+;

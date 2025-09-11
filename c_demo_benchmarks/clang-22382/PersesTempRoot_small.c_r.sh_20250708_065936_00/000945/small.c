@@ -1,0 +1,7 @@
+typedef
+unsigned
+long
+long
+int
+uint64_t
+;

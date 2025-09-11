@@ -1,0 +1,11 @@
+{
+    "Subject": "c_benchmarks/clang-23309",
+    "Reducer": "hdd_sadd_vs",
+    "Environment": null,
+    "Origin token count": 38647,
+    "Iteration": 0,
+    "Query": 74967,
+    "Time": 8936,
+    "Token_remaining": 1012,
+    "Ret_code": 0
+}

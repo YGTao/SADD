@@ -1,0 +1,15 @@
+static
+int32_t
+g_390
+=
+(
+-
+1L
+)
+;
+static
+uint8_t
+g_391
+=
+255UL
+;

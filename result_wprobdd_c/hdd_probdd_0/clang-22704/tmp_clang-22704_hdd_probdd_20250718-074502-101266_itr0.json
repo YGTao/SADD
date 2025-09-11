@@ -1,0 +1,11 @@
+{
+    "Subject": "c_benchmarks/clang-22704",
+    "Reducer": "hdd_probdd",
+    "Environment": null,
+    "Origin token count": 184444,
+    "Iteration": 0,
+    "Query": 11542,
+    "Time": 12203,
+    "Token_remaining": 103,
+    "Ret_code": 0
+}

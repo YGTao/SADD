@@ -1,0 +1,12 @@
+static
+int16_t
+g_153
+=
+0L
+;
+static
+uint32_t
+g_154
+=
+3UL
+;

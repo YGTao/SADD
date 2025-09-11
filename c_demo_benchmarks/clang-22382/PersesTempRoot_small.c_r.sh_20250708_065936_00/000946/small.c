@@ -1,0 +1,10 @@
+int
+printf
+(
+const
+char
+*
+,
+...
+)
+;

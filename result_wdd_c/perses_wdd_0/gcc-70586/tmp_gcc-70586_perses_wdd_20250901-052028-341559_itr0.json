@@ -1,0 +1,11 @@
+{
+    "Subject": "c_demo_benchmarks/gcc-70586",
+    "Reducer": "perses_wdd",
+    "Environment": null,
+    "Origin token count": 212259,
+    "Iteration": 0,
+    "Query": 7539,
+    "Time": 8500,
+    "Token_remaining": 367,
+    "Ret_code": 0
+}

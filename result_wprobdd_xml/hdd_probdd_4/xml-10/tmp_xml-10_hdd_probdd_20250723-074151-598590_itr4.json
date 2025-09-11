@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-10",
+    "Reducer": "hdd_probdd",
+    "Environment": null,
+    "Origin token count": 20177,
+    "Iteration": 4,
+    "Query": 875,
+    "Time": 3069,
+    "Token_remaining": 102,
+    "Ret_code": 0
+}

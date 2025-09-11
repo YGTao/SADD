@@ -1,0 +1,11 @@
+{
+    "Subject": "c_benchmarks/clang-26350",
+    "Reducer": "perses_ddmin",
+    "Environment": null,
+    "Origin token count": 123811,
+    "Iteration": 0,
+    "Query": 7283,
+    "Time": 7132,
+    "Token_remaining": 193,
+    "Ret_code": 0
+}

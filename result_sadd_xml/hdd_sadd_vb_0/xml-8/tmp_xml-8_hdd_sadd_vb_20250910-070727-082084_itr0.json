@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-8",
+    "Reducer": "hdd_sadd_vb",
+    "Environment": null,
+    "Origin token count": 20201,
+    "Iteration": 0,
+    "Query": 197,
+    "Time": 463,
+    "Token_remaining": 24,
+    "Ret_code": 0
+}

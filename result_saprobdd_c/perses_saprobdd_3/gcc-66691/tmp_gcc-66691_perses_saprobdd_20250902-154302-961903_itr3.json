@@ -1,0 +1,11 @@
+{
+    "Subject": "c_benchmarks/gcc-66691",
+    "Reducer": "perses_saprobdd",
+    "Environment": null,
+    "Origin token count": 20044,
+    "Iteration": 3,
+    "Query": 6935,
+    "Time": 3560,
+    "Token_remaining": 603,
+    "Ret_code": 0
+}

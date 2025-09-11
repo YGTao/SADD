@@ -1,0 +1,12 @@
+static
+uint16_t
+g_40
+=
+65534UL
+;
+static
+int32_t
+g_85
+=
+0x89AB98CFL
+;

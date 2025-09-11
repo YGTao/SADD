@@ -1,0 +1,11 @@
+{
+    "Subject": "c_demo_short/clang-22337",
+    "Reducer": "perses_probdd",
+    "Environment": null,
+    "Origin token count": 70770,
+    "Iteration": 0,
+    "Query": 5659,
+    "Time": 2376,
+    "Token_remaining": 263,
+    "Ret_code": 0
+}

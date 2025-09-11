@@ -1,0 +1,59 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events.
+# on: [push, pull_request]
+on: [push, pull_request] 
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v1
+
+    - name: Install Prerequisite Software
+      run: |
+        sudo apt-get install scala creduce clang-format
+
+    # Runs a single command using the runners shell
+    - name: Mount bazel cache
+      uses: actions/cache@v1
+      with:
+        path: "/home/runner/.cache/bazel"
+        key: bazel
+
+    - name: Build
+      run: |
+        bazel build //src/... //antlropt/... //test/... //copyright/... //ppr/...
+
+#    - name: Test Toy Benchmarks
+#      run: |
+#        bazel test --test_output=errors //test/org/perses/benchmark_toys/...
+
+    #- name: Test Reducers
+    #  run: |
+    #    bazel test //test/org/perses/reduction/...
+
+    #- name: Test Antlr OPT
+    #  run: |
+    #    bazel test //antlropt/...
+
+    #- name: Test Pair-Wise Program Reduction
+    #  run: |
+    #    bazel test //ppr/...
+
+    #- name: Test
+    #  run: |
+    #    ./scripts/presubmit.sh
+
+    - name: Test Installation
+      run: |
+        ./scripts/test_install_perses.sh

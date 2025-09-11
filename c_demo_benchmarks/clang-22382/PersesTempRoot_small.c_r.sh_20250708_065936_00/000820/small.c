@@ -1,0 +1,17 @@
+typedef
+unsigned
+long
+long
+int
+uint64_t
+;
+int
+printf
+(
+const
+char
+*
+,
+...
+)
+;

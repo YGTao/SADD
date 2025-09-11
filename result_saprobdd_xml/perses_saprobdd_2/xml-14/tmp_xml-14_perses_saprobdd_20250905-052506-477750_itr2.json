@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-14",
+    "Reducer": "perses_saprobdd",
+    "Environment": null,
+    "Origin token count": 19913,
+    "Iteration": 2,
+    "Query": 403,
+    "Time": 1493,
+    "Token_remaining": 43,
+    "Ret_code": 0
+}

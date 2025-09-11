@@ -1,0 +1,15 @@
+static
+uint8_t
+(
+safe_unary_minus_func_uint8_t_u
+)
+(
+uint8_t
+ui
+)
+{
+return
+-
+ui
+;
+}

@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-22",
+    "Reducer": "perses_probdd",
+    "Environment": null,
+    "Origin token count": 19290,
+    "Iteration": 1,
+    "Query": 95,
+    "Time": 343,
+    "Token_remaining": 24,
+    "Ret_code": 0
+}

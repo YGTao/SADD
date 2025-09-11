@@ -1,0 +1,35 @@
+\begin{table*}[t]
+\caption{Ablation study: Component contributions to \SAddmin. 
+Percentages are geometric means of improvements relative to V-only baseline; 
+$p$-values from two-sided paired Wilcoxon tests. 
+*: $p<0.05$, **: $p<0.01$, ***: $p<0.001$.}
+\label{tab:ablation}
+\centering
+\footnotesize
+\begin{tabular}{ll|rrr|rrr}
+\toprule
+& & \multicolumn{3}{c|}{C Programs} & \multicolumn{3}{c}{XML Documents} \\
+Framework & Variant & Time$\downarrow$ & Size$\downarrow$ & Query$\downarrow$ & Time$\downarrow$ & Size$\downarrow$ & Query$\downarrow$ \\
+\midrule
+\multirow{8}{*}{HDD} & Baseline (V-only) & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 0.0\% \\
+ & V+S & 0.96\% & -3.22\% & 0.95\% & 0.33\% & 0.00\% & 0.05\% \\
+ & V+B & 5.91\%** & 0.22\% & 2.49\% & -6.23\%* & 0.00\% & -0.00\% \\
+ & V+S+B & \textbf{3.77\%} & \textbf{-0.11\%} & \textbf{3.57\%} & \textbf{-0.97\%*} & \textbf{0.00\%} & \textbf{-0.02\%} \\
+\cmidrule(lr){2-8}
+& \multicolumn{7}{l}{\textit{Incremental gains (beyond V-only):}}\\
+ & S contribution & +0.96\% & -3.22\% & +0.95\% & +0.33\% & +0.00\% & +0.05\% \\
+ & B contribution & +5.91\% & +0.22\% & +2.49\% & -6.23\% & +0.00\% & -0.00\% \\
+ & Synergy (S+B) & -3.10\% & +2.89\% & +0.14\% & +4.92\% & +0.00\% & -0.06\% \\
+\midrule
+\multirow{8}{*}{Perses} & Baseline (V-only) & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 0.0\% & 0.0\% \\
+ & V+S & -2.12\% & -0.49\% & -0.67\% & 0.55\% & 0.00\% & -0.13\% \\
+ & V+B & 1.32\% & -0.03\% & -0.11\% & -5.60\%* & 0.00\% & -0.34\% \\
+ & V+S+B & \textbf{-3.43\%} & \textbf{-0.56\%} & \textbf{-1.03\%} & \textbf{0.57\%} & \textbf{0.00\%} & \textbf{0.32\%} \\
+\cmidrule(lr){2-8}
+& \multicolumn{7}{l}{\textit{Incremental gains (beyond V-only):}}\\
+ & S contribution & -2.12\% & -0.49\% & -0.67\% & +0.55\% & +0.00\% & -0.13\% \\
+ & B contribution & +1.32\% & -0.03\% & -0.11\% & -5.60\% & +0.00\% & -0.34\% \\
+ & Synergy (S+B) & -2.64\% & -0.05\% & -0.25\% & +5.61\% & +0.00\% & +0.80\% \\
+\bottomrule
+\end{tabular}
+\end{table*}

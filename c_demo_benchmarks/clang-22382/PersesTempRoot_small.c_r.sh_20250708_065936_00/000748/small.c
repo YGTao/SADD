@@ -1,0 +1,12 @@
+static
+int64_t
+g_1238
+=
+0xEF73CDC07DB9FD50LL
+;
+static
+uint64_t
+g_1241
+=
+1UL
+;

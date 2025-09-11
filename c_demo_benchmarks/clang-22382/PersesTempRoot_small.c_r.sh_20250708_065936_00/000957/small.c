@@ -1,0 +1,12 @@
+static
+int64_t
+g_1985
+=
+0x4E20E02FB14D3ADFLL
+;
+static
+uint32_t
+g_2138
+=
+0xE3D39B8FL
+;

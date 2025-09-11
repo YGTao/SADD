@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-6",
+    "Reducer": "perses_sadd",
+    "Environment": null,
+    "Origin token count": 20327,
+    "Iteration": 0,
+    "Query": 110,
+    "Time": 701,
+    "Token_remaining": 30,
+    "Ret_code": 0
+}

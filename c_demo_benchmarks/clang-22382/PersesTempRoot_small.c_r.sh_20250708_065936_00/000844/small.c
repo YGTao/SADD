@@ -1,0 +1,15 @@
+static
+int32_t
+g_2300
+=
+(
+-
+1L
+)
+;
+static
+int32_t
+g_2342
+=
+0x91C31F8BL
+;

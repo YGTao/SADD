@@ -1,0 +1,12 @@
+static
+uint8_t
+g_86
+=
+2UL
+;
+static
+int64_t
+g_131
+=
+1L
+;

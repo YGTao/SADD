@@ -1,0 +1,19 @@
+static
+void
+platform_main_end
+(
+uint32_t
+crc
+,
+int
+flag
+)
+{
+printf
+(
+"checksum = %X\n"
+,
+crc
+)
+;
+}

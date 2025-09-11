@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-27",
+    "Reducer": "hdd_ddmin",
+    "Environment": null,
+    "Origin token count": 19985,
+    "Iteration": 0,
+    "Query": 2912,
+    "Time": 9367,
+    "Token_remaining": 195,
+    "Ret_code": 0
+}

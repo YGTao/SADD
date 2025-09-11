@@ -1,0 +1,18 @@
+small.c: In function 'test2llong1':
+small.c:8:15: warning: initialization makes integer from pointer without a cast
+     llong c = *test1char8;
+               ^
+small.c: At top level:
+small.c:12:1: internal compiler error: in output_constant_pool_2, at varasm.c:3816
+ int main() {}
+ ^
+0xabc687 output_constant_pool_2
+	/home/cnsun/workspace/cfi_docker/build-scripts/build-gcc-releases/gcc-releases/4.9.0/gcc-4.9.0/gcc/varasm.c:3816
+0xabc6dd output_constant_pool_1
+	/home/cnsun/workspace/cfi_docker/build-scripts/build-gcc-releases/gcc-releases/4.9.0/gcc-4.9.0/gcc/varasm.c:3884
+0xabfb17 output_constant_pool_contents
+	/home/cnsun/workspace/cfi_docker/build-scripts/build-gcc-releases/gcc-releases/4.9.0/gcc-4.9.0/gcc/varasm.c:3999
+Please submit a full bug report,
+with preprocessed source if appropriate.
+Please include the complete backtrace with any bug report.
+See <http://gcc.gnu.org/bugs.html> for instructions.

@@ -1,0 +1,11 @@
+{
+    "Subject": "c_benchmarks/clang-23309",
+    "Reducer": "perses_sadd_vb",
+    "Environment": null,
+    "Origin token count": 38647,
+    "Iteration": 0,
+    "Query": 7900,
+    "Time": 2179,
+    "Token_remaining": 464,
+    "Ret_code": 0
+}

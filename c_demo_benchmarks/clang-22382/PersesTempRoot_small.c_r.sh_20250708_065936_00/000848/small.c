@@ -1,0 +1,8 @@
+static
+uint8_t
+func_22
+(
+uint32_t
+p_23
+)
+;

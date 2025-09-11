@@ -1,0 +1,15 @@
+static
+uint64_t
+(
+safe_unary_minus_func_uint64_t_u
+)
+(
+uint64_t
+ui
+)
+{
+return
+-
+ui
+;
+}

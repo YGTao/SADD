@@ -1,0 +1,12 @@
+static
+int32_t
+func_66
+(
+uint16_t
+p_67
+,
+struct
+S0
+p_68
+)
+;

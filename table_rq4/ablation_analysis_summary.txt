@@ -1,0 +1,65 @@
+================================================================================
+ABLATION STUDY ANALYSIS RESULTS
+================================================================================
+
+HDD Framework:
+----------------------------------------
+
+  C Benchmarks:
+    Time: 3.77% total improvement (p=5.648e-02, n=32)
+      S contribution: +0.96%
+      B contribution: +5.91%
+      Synergy: -3.10%
+    Size: -0.11% total improvement (p=7.265e-01, n=32)
+      S contribution: -3.22%
+      B contribution: +0.22%
+      Synergy: +2.89%
+    Query: 3.57% total improvement (p=1.843e-01, n=32)
+      S contribution: +0.95%
+      B contribution: +2.49%
+      Synergy: +0.14%
+
+  XML Benchmarks:
+    Time: -0.97% total improvement (p=1.030e-02, n=30)
+      S contribution: +0.33%
+      B contribution: -6.23%
+      Synergy: +4.92%
+    Size: 0.00% total improvement (p=1.000e+00, n=30)
+      S contribution: +0.00%
+      B contribution: +0.00%
+      Synergy: +0.00%
+    Query: -0.02% total improvement (p=5.191e-01, n=30)
+      S contribution: +0.05%
+      B contribution: -0.00%
+      Synergy: -0.06%
+
+Perses Framework:
+----------------------------------------
+
+  C Benchmarks:
+    Time: -3.43% total improvement (p=5.527e-02, n=32)
+      S contribution: -2.12%
+      B contribution: +1.32%
+      Synergy: -2.64%
+    Size: -0.56% total improvement (p=1.441e-01, n=32)
+      S contribution: -0.49%
+      B contribution: -0.03%
+      Synergy: -0.05%
+    Query: -1.03% total improvement (p=9.983e-02, n=32)
+      S contribution: -0.67%
+      B contribution: -0.11%
+      Synergy: -0.25%
+
+  XML Benchmarks:
+    Time: 0.57% total improvement (p=6.885e-01, n=30)
+      S contribution: +0.55%
+      B contribution: -5.60%
+      Synergy: +5.61%
+    Size: 0.00% total improvement (p=1.000e+00, n=30)
+      S contribution: +0.00%
+      B contribution: +0.00%
+      Synergy: +0.00%
+    Query: 0.32% total improvement (p=5.040e-01, n=30)
+      S contribution: -0.13%
+      B contribution: -0.34%
+      Synergy: +0.80%

@@ -1,0 +1,11 @@
+{
+    "Subject": "c_benchmarks/clang-22337",
+    "Reducer": "perses_wprobdd",
+    "Environment": null,
+    "Origin token count": 70770,
+    "Iteration": 1,
+    "Query": 5196,
+    "Time": 2218,
+    "Token_remaining": 250,
+    "Ret_code": 0
+}

@@ -1,0 +1,6 @@
+static
+int64_t
+g_1985
+=
+0x4E20E02FB14D3ADFLL
+;

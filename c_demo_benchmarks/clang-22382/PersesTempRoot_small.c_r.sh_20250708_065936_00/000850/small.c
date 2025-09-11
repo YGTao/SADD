@@ -1,0 +1,17 @@
+static
+uint16_t
+func_51
+(
+int16_t
+p_52
+,
+uint16_t
+p_53
+,
+uint64_t
+p_54
+,
+int32_t
+p_55
+)
+;

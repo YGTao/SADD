@@ -1,0 +1,4 @@
+small.c: In function 'test2llong1':
+small.c:8:15: warning: initialization of 'llong' {aka 'long long int'} from 'int (*)(char)' makes integer from pointer without a cast [-Wint-conversion]
+     llong c = *test1char8;
+               ^

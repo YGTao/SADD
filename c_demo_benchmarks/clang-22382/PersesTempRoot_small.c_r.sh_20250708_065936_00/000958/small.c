@@ -1,0 +1,12 @@
+static
+uint8_t
+g_2239
+=
+0x2BL
+;
+static
+uint32_t
+g_2299
+=
+0x533C3544L
+;
