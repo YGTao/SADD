@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-20",
+    "Reducer": "perses_wdd",
+    "Environment": null,
+    "Origin token count": 20222,
+    "Iteration": 0,
+    "Query": 369,
+    "Time": 1416,
+    "Token_remaining": 64,
+    "Ret_code": 0
+}

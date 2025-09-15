@@ -279,8 +279,8 @@ def main():
     ]
     
     # Loop over both mean types to generate two separate reports
-    for mean_type in ['arithmetic', 'geometric']:
-    # for mean_type in ['geometric']:
+    # for mean_type in ['arithmetic', 'geometric']:
+    for mean_type in ['geometric']:
         print("\n" + "="*80)
         print(f"CALCULATING USING {mean_type.upper()} MEAN")
         print("="*80 + "\n")

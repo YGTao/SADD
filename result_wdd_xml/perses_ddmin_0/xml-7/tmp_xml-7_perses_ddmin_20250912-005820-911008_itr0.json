@@ -1,0 +1,11 @@
+{
+    "Subject": "xml_benchmarks/xml-7",
+    "Reducer": "perses_ddmin",
+    "Environment": null,
+    "Origin token count": 20207,
+    "Iteration": 0,
+    "Query": 159,
+    "Time": 443,
+    "Token_remaining": 33,
+    "Ret_code": 0
+}

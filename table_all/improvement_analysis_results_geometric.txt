@@ -44,9 +44,9 @@ Perses Framework - DDMIN Algorithm Set
 
 SAddmin vs ddmin Comparison:
 ----------------------------------------
-Time: Persess generates 3.20% and -5.35% faster results than Persesd on C and XML benchmarks, respectively, with overall p-value of 0.078.
+Time: Persess generates 3.20% and 0.30% faster results than Persesd on C and XML benchmarks, respectively, with overall p-value of 0.168.
 Size: Persess generates -2.15% and 0.19% smaller results than Persesd on C and XML benchmarks, respectively, with overall p-value of 0.677.
-Query: Persess generates 8.38% and 0.33% fewer queries than Persesd on C and XML benchmarks, respectively, with overall p-value of 1.44e-06.
+Query: Persess generates 8.38% and 0.02% fewer queries than Persesd on C and XML benchmarks, respectively, with overall p-value of 3.21e-06.
 
 Detailed Results:
   C Benchmarks:
@@ -54,15 +54,15 @@ Detailed Results:
     Size: -2.15% improvement (p=0.482)
     Query: 8.38% improvement (p=6.59e-06)
   XML Benchmarks:
-    Time: -5.35% improvement (p=4.45e-05)
+    Time: 0.30% improvement (p=0.234)
     Size: 0.19% improvement (p=0.317)
-    Query: 0.33% improvement (p=0.459)
+    Query: 0.02% improvement (p=0.773)
 
 SAddmin vs Wddmin Comparison:
 ----------------------------------------
-Time: Persess generates -2.13% and -7.26% faster results than Persesw on C and XML benchmarks, respectively, with overall p-value of 1.55e-04.
+Time: Persess generates -2.13% and -0.50% faster results than Persesw on C and XML benchmarks, respectively, with overall p-value of 0.419.
 Size: Persess generates -1.71% and 0.00% smaller results than Persesw on C and XML benchmarks, respectively, with overall p-value of 0.205.
-Query: Persess generates 1.29% and 0.29% fewer queries than Persesw on C and XML benchmarks, respectively, with overall p-value of 0.003.
+Query: Persess generates 1.29% and -0.45% fewer queries than Persesw on C and XML benchmarks, respectively, with overall p-value of 0.029.
 
 Detailed Results:
   C Benchmarks:
@@ -70,9 +70,9 @@ Detailed Results:
     Size: -1.71% improvement (p=0.205)
     Query: 1.29% improvement (p=0.003)
   XML Benchmarks:
-    Time: -7.26% improvement (p=2.35e-06)
+    Time: -0.50% improvement (p=0.203)
     Size: 0.00% improvement (p=1.000)
-    Query: 0.29% improvement (p=0.862)
+    Query: -0.45% improvement (p=0.267)
 
 ============================================================
 HDD Framework - PROBDD Algorithm Set
