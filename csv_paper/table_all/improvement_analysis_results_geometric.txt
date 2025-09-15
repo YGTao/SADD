@@ -14,11 +14,11 @@ Query: HDDs generates 53.64% and 32.46% fewer queries than HDDd on C and XML ben
 
 Detailed Results:
   C Benchmarks:
-    Time: 57.12% improvement (p=7.95e-07)
+    Time: 57.12% improvement (p=4.66e-10)
     Size: 1.56% improvement (p=0.339)
-    Query: 53.64% improvement (p=7.95e-07)
+    Query: 53.64% improvement (p=4.66e-10)
   XML Benchmarks:
-    Time: 30.12% improvement (p=0.329)
+    Time: 30.12% improvement (p=0.339)
     Size: 28.86% improvement (p=9.82e-04)
     Query: 32.46% improvement (p=1.24e-04)
 
@@ -30,11 +30,11 @@ Query: HDDs generates 15.12% and -0.11% fewer queries than HDDw on C and XML ben
 
 Detailed Results:
   C Benchmarks:
-    Time: 15.04% improvement (p=1.86e-06)
+    Time: 15.04% improvement (p=1.54e-08)
     Size: -4.96% improvement (p=0.069)
-    Query: 15.12% improvement (p=1.16e-06)
+    Query: 15.12% improvement (p=3.26e-09)
   XML Benchmarks:
-    Time: -7.43% improvement (p=1.73e-06)
+    Time: -7.43% improvement (p=1.86e-09)
     Size: 0.00% improvement (p=1.000)
     Query: -0.11% improvement (p=0.047)
 
@@ -50,9 +50,9 @@ Query: Persess generates 8.38% and 0.02% fewer queries than Persesd on C and XML
 
 Detailed Results:
   C Benchmarks:
-    Time: 3.20% improvement (p=0.286)
+    Time: 3.20% improvement (p=0.295)
     Size: -2.15% improvement (p=0.482)
-    Query: 8.38% improvement (p=6.59e-06)
+    Query: 8.38% improvement (p=2.98e-07)
   XML Benchmarks:
     Time: 0.30% improvement (p=0.234)
     Size: 0.19% improvement (p=0.317)
@@ -66,9 +66,9 @@ Query: Persess generates 1.29% and -0.45% fewer queries than Persesw on C and XM
 
 Detailed Results:
   C Benchmarks:
-    Time: -2.13% improvement (p=0.808)
+    Time: -2.13% improvement (p=0.818)
     Size: -1.71% improvement (p=0.205)
-    Query: 1.29% improvement (p=0.003)
+    Query: 1.29% improvement (p=0.002)
   XML Benchmarks:
     Time: -0.50% improvement (p=0.203)
     Size: 0.00% improvement (p=1.000)
@@ -86,13 +86,13 @@ Query: HDDs generates 15.69% and 16.03% fewer queries than HDDp on C and XML ben
 
 Detailed Results:
   C Benchmarks:
-    Time: 14.64% improvement (p=2.86e-04)
+    Time: 14.64% improvement (p=1.22e-04)
     Size: 12.06% improvement (p=5.42e-05)
-    Query: 15.69% improvement (p=0.004)
+    Query: 15.69% improvement (p=0.003)
   XML Benchmarks:
-    Time: 20.10% improvement (p=0.005)
+    Time: 20.10% improvement (p=0.004)
     Size: 13.75% improvement (p=0.001)
-    Query: 16.03% improvement (p=0.003)
+    Query: 16.03% improvement (p=0.002)
 
 SAProbDD vs WProbDD Comparison:
 ----------------------------------------
@@ -102,11 +102,11 @@ Query: HDDs generates 2.36% and 0.17% fewer queries than HDDw on C and XML bench
 
 Detailed Results:
   C Benchmarks:
-    Time: 4.28% improvement (p=0.191)
+    Time: 4.28% improvement (p=0.197)
     Size: 1.55% improvement (p=0.666)
-    Query: 2.36% improvement (p=0.822)
+    Query: 2.36% improvement (p=0.832)
   XML Benchmarks:
-    Time: -1.68% improvement (p=0.079)
+    Time: -1.68% improvement (p=0.080)
     Size: 1.55% improvement (p=0.109)
     Query: 0.17% improvement (p=0.665)
 
@@ -122,9 +122,9 @@ Query: Persess generates 4.57% and -0.58% fewer queries than Persesp on C and XM
 
 Detailed Results:
   C Benchmarks:
-    Time: 7.02% improvement (p=3.05e-05)
+    Time: 7.02% improvement (p=4.60e-06)
     Size: 3.40% improvement (p=0.153)
-    Query: 4.57% improvement (p=7.13e-04)
+    Query: 4.57% improvement (p=3.98e-04)
   XML Benchmarks:
     Time: 0.08% improvement (p=0.642)
     Size: -0.20% improvement (p=0.317)
@@ -138,10 +138,10 @@ Query: Persess generates -0.12% and 0.33% fewer queries than Persesw on C and XM
 
 Detailed Results:
   C Benchmarks:
-    Time: 0.30% improvement (p=0.985)
+    Time: 0.30% improvement (p=0.993)
     Size: 0.03% improvement (p=0.655)
     Query: -0.12% improvement (p=0.524)
   XML Benchmarks:
-    Time: 0.96% improvement (p=0.185)
+    Time: 0.96% improvement (p=0.191)
     Size: 0.00% improvement (p=1.000)
     Query: 0.33% improvement (p=0.004)
