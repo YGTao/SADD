@@ -1,125 +1,329 @@
-# Artifact for "Structure-Aware Delta Debugging with Geometric--Information Weights"
+# Artifact for *Structure-Aware Delta Debugging with Geometric‑Information Weights*
 
-## Introduction
+Thank you for evaluating our artifact. This README provides a **minimal, deterministic path** to reproduce the paper's results (ddmin variants) and a **batched path** for ProbDD variants (5 runs).
 
-Thank you for evaluating this artifact.
+---
 
-To evaluate this artifact, a Linux machine with [docker](https://docs.docker.com/get-docker/) is needed.
+## 1. System Requirements
 
-## Notes
+- **OS:** Linux (recommended) with Docker Desktop
+- **Docker:** ≥ 24.0 — [Install guide](https://docs.docker.com/get-docker/)
+- **Optional:** `tmux`/`screen` for long‑running jobs; 
 
-- All the experiments take very long time to finish, so it is recommended to use tools like screen and tmux to manage sessions if the experiments are run on remote server.
-- The experiments involving ProbDD in this paper were repeated 5 times to mitigate the randomness of ProbDD algorithms.
+> The experiments (especially probabilistic with 5× repeats) are long. Please consider running inside `tmux`/`screen` on a server.
 
-## Docker Environment Setup
+---
 
-1. If docker is not installed, install it by following the [instructions](https://docs.docker.com/get-docker/).
+## 2. Docker Environment Setup
 
-2. Install the docker image.
+We provide a prebuilt image that contains implementations of ddmin, ProbDD, WDD, and SADD algorithms for both Perses and HDD frameworks.
 
-   ```shell
-   docker pull 
-   ```
+```bash
+# Pull image
+docker pull saddartifact/sadd:latest
 
-3. Start a container
+# Start a container (interactive), working in /tmp/WeightDD
+# and --name sadd_eval to re‑attach later.
+docker run \
+  --cap-add SYS_PTRACE \
+  -it \
+  --name sadd_eval \
+  -w /tmp/WeightDD \
+  saddartifact/sadd:latest
 
-   ```shell
-   docker container run --cap-add SYS_PTRACE --interactive --tty 
-   # for all operations in docker, use 'sudo' when meeting permission denied issues, password is 123
-   cd /tmp/WeightDD/
-   ```
-
-## Benchmark Suites
-
-Under the root directory of the project, the benchmarks are located in:
-
-- `./c_benchmarks`: benchmark-C which consists of 32 C programs;
-- `./xml_benchmarks`: benchmark-XML which consists of 30 XML files.
-
-## Implementation
-
-We implemented all the related algorithms in this paper based on [Perses](https://github.com/uw-pluverse/perses). 
-
-To run the evaluation, we need perses (including Perses, HDD, and all related algorithms in this paper). For convenience , we have pre-built the tools and put them under `/tmp/binaries/` in the docker image (also put in the `tools` directory of this repo. Three JAR files are required fo evaluation:
-
+# Inside container (prompt example):
+# coq@<container>:/tmp/WeightDD$
 ```
-> tree /tmp/binaries/
+
+> If you encounter permission issues inside the container, try prefixing commands with `sudo` (password: `123`).
+
+---
+
+## 3. Benchmarks
+
+Under the project root (`/tmp/WeightDD` in the container):
+
+- `./c_benchmarks/` — **C** suite (32 programs)
+- `./xml_benchmarks/` — **XML** suite (30 inputs)
+
+---
+
+## 4. Prebuilt Tools (JARs)
+
+We supply prebuilt JARs under `/tmp/binaries/`.
+
+```text
 /tmp/binaries/
-|-- perses_deploy.jar
-|-- perses_stat_deploy.jar
-|-- token_counter_deploy.jar
-|-- volume-S-B-0.jar
-|-- volume-S-B-1.jar
-|-- volume-S0-B1.jar
-`-- volume-S1-B0.jar
+├── perses_deploy.jar
+├── perses_stat_deploy.jar
+├── token_counter_deploy.jar
+├── volume-S-B-0.jar  # V only
+├── volume-S-B-1.jar  # V + S + B
+├── volume-S0-B1.jar  # V + B
+└── volume-S1-B0.jar  # V + S
 ```
 
+These are used by our scripts to run **ddmin/ProbDD/WDD** baselines and **SADD** (structure‑aware) variants.
 
-## RQ1: $SA_{ddmin}$ v.s. $ddmin$
+---
 
-```shell
-# For C Benchmarks:
-./run_exp_parallel_c.py -s c_benchmarks/* -r perses_ddmin perses_sadd hdd_ddmin hdd_sadd -o result_sadd_c -j 8
-# For XML Benchmarks:
-./run_exp_parallel_xml.py -s xml_benchmarks/xml-* -r perses_ddmin perses_sadd hdd_ddmin hdd_sadd -o result_sadd_xml -j 8
-# Run convert_result_to_csv.py to export the results into csv files, use '-h' to see usage notes
-./convert_result_to_csv.py -d result_sadd_c/hdd_ddmin_0/*  -o hdd_ddmin_c.csv
-./convert_result_to_csv.py -d result_sadd_c/hdd_sadd_0/*  -o hdd_sadd_c.csv
-./convert_result_to_csv.py -d result_sadd_c/perses_ddmin_0/*  -o perses_ddmin_c.csv
-./convert_result_to_csv.py -d result_sadd_c/perses_sadd_0/*  -o perses_sadd_c.csv
-./convert_result_to_csv.py -d result_sadd_xml/hdd_ddmin_0/*  -o hdd_ddmin_xml.csv
-./convert_result_to_csv.py -d result_sadd_xml/hdd_sadd_0/*  -o hdd_sadd_xml.csv
-./convert_result_to_csv.py -d result_sadd_xml/perses_ddmin_0/*  -o perses_ddmin_xml.csv
-./convert_result_to_csv.py -d result_sadd_xml/perses_sadd_0/*  -o perses_sadd_xml.csv
+## 5. Running Experiments
+
+We provide parallel runners for C and XML suites. Adjust `-j` to match available cores. Paths below assume **container working dir** `/tmp/WeightDD`.
+
+### 5.1 Ddmin Variants (ddmin, W\_ddmin, SA\_ddmin)
+
+#### C benchmarks
+
+```bash
+# Baselines: ddmin + W_ddmin (Perses and HDD frameworks)
+./run_exp_parallel_c.py \
+  -s c_benchmarks/* \
+  -r perses_ddmin perses_wdd hdd_ddmin hdd_wdd \
+  -o result_wdd_c \
+  -j 8
+
+# Structure‑Aware (SADD) variants
+./run_exp_parallel_c.py \
+  -s c_benchmarks/* \
+  -r perses_sadd hdd_sadd \
+  -o result_sadd_c \
+  -j 8
 ```
 
-## RQ2: $SA_{ProbDD}$ v.s. $ProbDD$
+#### XML benchmarks
 
-```shell
-# For C Benchmarks:
-./run_exp_parallel_c.py -s c_benchmarks/* -r perses_probdd perses_saprobdd hdd_probdd hdd_saprobdd -o result_saprobdd_c -j 8
-# For XML Benchmarks:
-./run_exp_parallel_xml.py -s xml_benchmarks/xml-* -r perses_probdd perses_saprobdd hdd_probdd hdd_saprobdd -o result_saprobdd_xml -j 8
-# Run convert_result_to_csv.py to export the results into csv files, use '-h' to see usage notes
-./convert_result_to_csv.py -d result_saprobdd_c/hdd_probdd_0/*  -o hdd_probdd_c.csv
-./convert_result_to_csv.py -d result_saprobdd_c/hdd_saprobdd_0/*  -o hdd_saprobdd_c.csv
-./convert_result_to_csv.py -d result_saprobdd_c/perses_probdd_0/* -o perses_probdd_c.csv
-./convert_result_to_csv.py -d result_saprobdd_c/perses_saprobdd_0/* -o perses_saprobdd_c.csv
-./convert_result_to_csv.py -d result_saprobdd_xml/hdd_probdd_0/*  -o hdd_probdd_xml.csv
-./convert_result_to_csv.py -d result_saprobdd_xml/hdd_saprobdd_0/*  -o hdd_saprobdd_xml.csv
-./convert_result_to_csv.py -d result_saprobdd_xml/perses_probdd_0/* -o perses_probdd_xml.csv
-./convert_result_to_csv.py -d result_saprobdd_xml/perses_saprobdd_0/* -o perses_saprobdd_xml.csv
+```bash
+# Baselines: ddmin + W_ddmin
+./run_exp_parallel_xml.py \
+  -s xml_benchmarks/xml-* \
+  -r perses_ddmin perses_wdd hdd_ddmin hdd_wdd \
+  -o result_wdd_xml \
+  -j 8
+
+# Structure‑Aware (SADD)
+./run_exp_parallel_xml.py \
+  -s xml_benchmarks/xml-* \
+  -r perses_sadd hdd_sadd \
+  -o result_sadd_xml \
+  -j 8
 ```
 
-## RQ3: $SA_{ddmin}$ v.s. $W_{ddmin}$ and $SA_{ProbDD}$ v.s. $W_{ProbDD}$
+### 5.2 Probabilistic Variants (ProbDD, W\_ProbDD, SA\_ProbDD)
 
-```shell
-# For C Benchmarks:
-./run_exp_parallel_c.py -s c_benchmarks/* -r perses_sadd perses_wdd perses_saprobdd perses_wprobdd hdd_sadd hdd_wdd hdd_saprobdd hdd_wprobdd -o result_comparison_c -j 20
-# For XML Benchmarks:
-./run_exp_parallel_xml.py -s xml_benchmarks/xml-* -r perses_sadd perses_wdd perses_saprobdd perses_wprobdd hdd_sadd hdd_wdd hdd_saprobdd hdd_wprobdd -o result_comparison_xml -j 20
-# Run convert_result_to_csv.py to export the results into csv files, use '-h' to see usage notes
-./convert_result_to_csv.py -d result_comparison_c/hdd_sadd_0/*  -o hdd_sadd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/hdd_wdd_0/*  -o hdd_wdd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/hdd_saprobdd_0/*  -o hdd_saprobdd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/hdd_wprobdd_0/*  -o hdd_wprobdd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/perses_sadd_0/* -o perses_sadd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/perses_wdd_0/* -o perses_wdd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/perses_saprobdd_0/* -o perses_saprobdd_c.csv
-./convert_result_to_csv.py -d result_comparison_c/perses_wprobdd_0/* -o perses_wprobdd_c.csv
-./convert_result_to_csv.py -d result_comparison_xml/hdd_sadd_0/*  -o hdd_sadd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/hdd_wdd_0/*  -o hdd_wdd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/hdd_saprobdd_0/*  -o hdd_saprobdd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/hdd_wprobdd_0/*  -o hdd_wprobdd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/perses_sadd_0/* -o perses_sadd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/perses_wdd_0/* -o perses_wdd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/perses_saprobdd_0/* -o perses_saprobdd_xml.csv
-./convert_result_to_csv.py -d result_comparison_xml/perses_wprobdd_0/* -o perses_wprobdd_xml.csv
+We repeat each probabilistic configuration **5 runs** to mitigate randomness (`-i 5`).
 
+#### C benchmarks
 
+```bash
+# ProbDD + W_ProbDD (5 runs)
+./run_exp_parallel_c.py \
+  -s c_benchmarks/* \
+  -r perses_probdd perses_wprobdd hdd_probdd hdd_wprobdd \
+  -o result_wprobdd_c \
+  -j 8 -i 5
 
-## Evaluation Results
+# SA_ProbDD (5 runs)
+./run_exp_parallel_c.py \
+  -s c_benchmarks/* \
+  -r perses_saprobdd hdd_saprobdd \
+  -o result_saprobdd_c \
+  -j 8 -i 5
+```
 
-**RQ4**: The raw data of the weights information during delta debugging are put in `results_rq1`, and the correlation values are exported to the csv files under `results_rq1_csv`. 
+#### XML benchmarks
 
-From this figure, the probability of elements being deleted is negatively correlated with their weights in ddmin executions in both HDD and Perses, to varying degrees. This validation provides a solid foundation for the design of $W_{ddmin}$.
+```bash
+# ProbDD + W_ProbDD (5 runs)
+./run_exp_parallel_xml.py \
+  -s xml_benchmarks/xml-* \
+  -r perses_probdd perses_wprobdd hdd_probdd hdd_wprobdd \
+  -o result_wprobdd_xml \
+  -j 8 -i 5
+
+# SA_ProbDD (5 runs)
+./run_exp_parallel_xml.py \
+  -s xml_benchmarks/xml-* \
+  -r perses_saprobdd hdd_saprobdd \
+  -o result_saprobdd_xml \
+  -j 8 -i 5
+```
+
+> **Note**: Runner scripts create subfolders ending with `_0`..`_4` for each probabilistic run.
+
+### 5.3 RQ4 Ablation Study 
+
+```bash
+# Ablation variants for C
+./run_exp_parallel_c.py \
+  -s c_benchmarks/* \
+  -r perses_sadd_v perses_sadd_vs perses_sadd_vb hdd_sadd_v hdd_sadd_vs hdd_sadd_vb \
+  -o result_sadd_c  \
+  -j 8
+
+# Ablation variants for XML  
+./run_exp_parallel_xml.py \
+  -s xml_benchmarks/xml-* \
+  -r perses_sadd_v perses_sadd_vs perses_sadd_vb hdd_sadd_v hdd_sadd_vs hdd_sadd_vb \
+  -o result_sadd_xml \
+  -j 8
+```
+
+---
+
+## 6. Converting Results to CSV
+
+Use the helper script to convert each method's logs to CSV format.
+
+> **Note:** We provide processed CSVs in `csv_paper/` — see Section 8 for details.
+
+### 6.1 Deterministic Baselines (ddmin, W\_ddmin)
+
+```bash
+# C benchmarks
+./convert_result_to_csv.py -d result_wdd_c/perses_ddmin_0/*  -o perses_ddmin_c.csv
+./convert_result_to_csv.py -d result_wdd_c/perses_wdd_0/*    -o perses_wdd_c.csv
+./convert_result_to_csv.py -d result_wdd_c/hdd_ddmin_0/*     -o hdd_ddmin_c.csv
+./convert_result_to_csv.py -d result_wdd_c/hdd_wdd_0/*       -o hdd_wdd_c.csv
+
+# XML benchmarks
+./convert_result_to_csv.py -d result_wdd_xml/perses_ddmin_0/* -o perses_ddmin_xml.csv
+./convert_result_to_csv.py -d result_wdd_xml/perses_wdd_0/*   -o perses_wdd_xml.csv
+./convert_result_to_csv.py -d result_wdd_xml/hdd_ddmin_0/*    -o hdd_ddmin_xml.csv
+./convert_result_to_csv.py -d result_wdd_xml/hdd_wdd_0/*      -o hdd_wdd_xml.csv
+```
+
+### 6.2 Structure‑Aware (SA\_ddmin)
+
+```bash
+# C benchmarks
+./convert_result_to_csv.py -d result_sadd_c/perses_sadd_0/* -o perses_sadd_c.csv
+./convert_result_to_csv.py -d result_sadd_c/hdd_sadd_0/*    -o hdd_sadd_c.csv
+
+# XML benchmarks
+./convert_result_to_csv.py -d result_sadd_xml/perses_sadd_0/* -o perses_sadd_xml.csv
+./convert_result_to_csv.py -d result_sadd_xml/hdd_sadd_0/*    -o hdd_sadd_xml.csv
+```
+
+### 6.3 Probabilistic Results — Batch Processing (ProbDD, W\_ProbDD, SA\_ProbDD)
+
+We provide two scripts to **collect** and **average** the five probabilistic runs.
+
+#### 6.3.1 Collect five runs → 60 CSVs
+
+```bash
+# In /tmp/WeightDD directory (where experimental results are located)
+chmod +x collect_probdd_results.sh
+./collect_probdd_results.sh
+# This reads from result_wprobdd_*/ and result_saprobdd_*/ directories
+# Output: ./table_probdd/*.csv (12 configs × 5 runs = 60 files)
+```
+
+#### 6.3.2 Average five runs → 12 CSVs
+
+```bash
+# Still in /tmp/WeightDD
+python3 average_probdd_results.py
+# Input: ./table_probdd/*.csv
+# Output: ./table_averaged_probdd/*.csv (one per config)
+```
+
+### 6.4 RQ4 Ablation Results
+
+```bash
+# In /tmp/WeightDD directory
+chmod +x collect_rq4_results.sh
+./collect_rq4_results.sh
+# This reads from result_sadd_c/ and result_sadd_xml/ directories
+# Output: ./table_rq4/*.csv (16 files: 8 configs × 2 datasets)
+```
+
+---
+
+## 7. Answering Research Questions
+
+### **RQ1: SADD vs. ddmin**
+
+Compare `*_sadd_*.csv` vs `*_ddmin_*.csv` on **output size**, **queries**, **time**.
+
+### **RQ2: SA\_ProbDD vs. ProbDD**
+
+Compare `*_saprobdd_*.csv` vs `*_probdd_*.csv` (use 5‑run averages from `table_averaged_probdd/`).
+
+### **RQ3: Structure‑Aware vs. Weighted**
+
+Compare:
+- SA\_ddmin vs W\_ddmin: `*_sadd_*.csv` vs `*_wdd_*.csv`
+- SA\_ProbDD vs W\_ProbDD: `*_saprobdd_*.csv` vs `*_wprobdd_*.csv`
+
+### **RQ4: Component Contribution (Ablation)**
+
+Analyze SADD's components **V**, **S\_uni**, **B\_eff** via four configs:
+1. **V only** (baseline volume) — suffix `_v`
+2. **V+S** (volume + structure) — suffix `_vs`
+3. **V+B** (volume + branching) — suffix `_vb`
+4. **V+S+B** (full SADD) — no suffix
+
+*Reading guide*: `(V+S)−V` and `(V+B)−V` give individual contributions of **S** and **B**; `full − (V+S) − (V+B) + V` is the **synergy**. 
+
+---
+
+## 8. Reproducing Paper Tables
+
+We provide our evaluation results and table generation scripts. The raw reducer outputs are in `result_paper/`, and the corresponding processed CSV files are organized in `csv_paper/`. To reproduce the tables from the paper:
+
+```bash
+# Table 2: SADD vs. ddmin
+cd csv_paper/table_ddmin
+python3 ddmin_table_generator.py
+# → Outputs: ddmin_table.tex, means_results.csv, integrated_results.csv
+
+# Table 3: SA_ProbDD vs. ProbDD/W_ProbDD 
+cd csv_paper/table_averaged_probdd
+python3 probdd_table_generator.py
+# → Outputs: probdd_table.tex, probdd_means_results.csv, probdd_integrated_results.csv
+
+# Table 4: Component ablation analysis
+cd csv_paper/table_rq4
+python3 rq4.py
+# → Outputs: ablation_table.tex, ablation_analysis_summary.txt, ablation_detailed_results.csv
+```
+
+These scripts will generate LaTeX tables and detailed CSV analysis files using our experimental data. You can also apply these scripts to your own experimental results by organizing the CSVs in the same directory structure.
+
+Directory structure:
+- `result_paper/`: Raw experimental outputs from our evaluation runs
+- `csv_paper/table_ddmin/`: All deterministic algorithm CSVs and Table 2 generator
+- `csv_paper/table_averaged_probdd/`: Averaged probabilistic CSVs and Table 3 generator
+- `csv_paper/table_rq4/`: Ablation study CSVs and Table 4 generator with analysis
+
+---
+
+## 9. Troubleshooting
+
+1. **Permission denied in Docker**  
+   Use `sudo` (password `123`) inside the container: e.g., `sudo bash`, `sudo ./run_exp_parallel_c.py ...`.
+
+2. **Python missing packages for CSV/plots**  
+   `pip install pandas matplotlib` (inside or outside the container, depending on where you post‑process).
+
+3. **Locale/encoding issues**  
+   Set `LC_ALL=C.UTF-8` and `LANG=C.UTF-8` inside the shell.
+
+---
+
+<!-- ## 10. Citation
+
+If you use this artifact in your research, please cite:
+
+```bibtex
+@inproceedings{SADD2024,
+  title={Structure-Aware Delta Debugging with Geometric-Information Weights},
+  author={...},
+  booktitle={...},
+  year={2024}
+}
+```
+
+---
+
