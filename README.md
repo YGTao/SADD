@@ -72,6 +72,7 @@ These are used by our scripts to run **ddmin/ProbDD/WDD** baselines and **SADD**
 ## 5. Running Experiments
 
 We provide parallel runners for C and XML suites. Adjust `-j` to match available cores. Paths below assume **container working dir** `/tmp/WeightDD`.
+> Full reproduction requires ~3,060 single-core hours (~17 days with `-j 8`). See `REQUIREMENTS.md` for per-table estimates.
 
 ### 5.1 Ddmin Variants (ddmin, W\_ddmin, SA\_ddmin)
 
@@ -260,13 +261,13 @@ Compare:
 
 ### **RQ4: Component Contribution (Ablation)**
 
-Analyze SADD's components **V**, **S\_uni**, **B\_eff** via four configs:
-1. **V only** (baseline volume) — suffix `_v`
-2. **V+S** (volume + structure) — suffix `_vs`
-3. **V+B** (volume + branching) — suffix `_vb`
+Analyze SADD's components **V**, **S**, **B** (see §4 for naming convention) via four configs:
+1. **V only** — suffix `_v`
+2. **V+S** — suffix `_vs`
+3. **V+B** — suffix `_vb`
 4. **V+S+B** (full SADD) — no suffix
 
-*Reading guide*: `(V+S)−V` and `(V+B)−V` give individual contributions of **S** and **B**; `full − (V+S) − (V+B) + V` is the **synergy**. 
+*Reading guide*: `(V+S)−V` and `(V+B)−V` give individual contributions of **S** and **B**; `full − (V+S) − (V+B) + V` is the **synergy**.
 
 ---
 
@@ -317,13 +318,13 @@ Directory structure:
 <!-- ## 10. Citation
 
 If you use this artifact in your research, please cite:
-
 ```bibtex
-@inproceedings{SADD2024,
+@inproceedings{sadd2026,
   title={Structure-Aware Delta Debugging with Geometric-Information Weights},
-  author={...},
-  booktitle={...},
-  year={2024}
+  author={Tao, Yonggang and Xue, Jingling},
+  booktitle={Proceedings of the 2026 ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (FSE '26)},
+  year={2026},
+  publisher={ACM}
 }
 ```
 
