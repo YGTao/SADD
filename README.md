@@ -65,6 +65,8 @@ We supply prebuilt JARs under `/tmp/binaries/`.
 
 These are used by our scripts to run **ddmin/ProbDD/WDD** baselines and **SADD** (structure‑aware) variants.
 
+> **Naming convention:** In the implementation, the metric denoted *U* (Decision Uniformity) in the paper is referred to as *S*. For example, `V+S` corresponds to V+U in the paper, and `volume-S1-B0.jar` enables V+U with B disabled.
+
 ---
 
 ## 5. Running Experiments
