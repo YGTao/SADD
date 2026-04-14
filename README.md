@@ -323,13 +323,13 @@ The core of SADD is the structural weight function, implemented in:
 
 `perses-weight-dd/src/org/perses/delta/FanoutWeightProvider.kt`
 
-This class implements the `IWeightProvider` interface consumed by
-`WeightSplitDeltaDebugger` (ddmin-family) and `WeightedDeltaDebugger`
-(ProbDD-family). A small number of additional changes were made at the
-call sites that previously supplied token-count weights, so that SADD's
-structural weights are used instead. The overall delta-debugging control
-logic, tree construction, oracle invocation, and test driver follow
-Perses and WDD without substantive modification.
+This class computes a per-element weight from each element's subtree
+and is invoked by the weighted reducers in the same package. A small
+number of additional changes were made at the call sites that previously
+supplied token-count weights, so that SADD's structural weights are used
+instead. The overall delta-debugging control logic, tree construction,
+oracle invocation, and test driver follow Perses and WDD without
+substantive modification.
 
 ### 10.2 What the Weight Function Does
 
@@ -337,9 +337,11 @@ Perses and WDD without substantive modification.
 
 `W = floor( V · ( 1 + λ_S · S + λ_SB · ( S · φ(B) ) ) ) + 1`
 
-from each element's subtree: `V` (volume = depth × leaves), `S` (decision
-uniformity, corresponding to **U** in the paper — see §4), and `B`
-(effective branching complexity, saturated via `φ(B)`).
+from each element's subtree: `V` (geometric volume, computed as
+depth × leaves), `S` (decision uniformity in [0,1]), and `B` (effective
+branching complexity, saturated via `φ(B) = B / (B + C)`). See Section 3
+of the paper for the full formulation. Note: `S` in the code corresponds
+to **U** in the paper (see the naming convention note in §4 of this README).
 
 ### 10.3 How to Extend the Weight Function
 
