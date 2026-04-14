@@ -74,7 +74,7 @@ These are used by our scripts to run **ddmin/ProbDD/WDD** baselines and **SADD**
 We provide parallel runners for C and XML suites. Adjust `-j` to match available cores. Paths below assume **container working dir** `/tmp/WeightDD`.
 > Full reproduction requires ~3,060 single-core hours (~17 days with `-j 8`). See `REQUIREMENTS.md` for per-table estimates.
 
-### 5.0 Quick Demo Runs (Recommended for Sanity Checks)
+### 5.1 Quick Demo Runs (Recommended for Sanity Checks)
 
 For reviewers who want to verify that the reducers run correctly without 
 committing to the full experiment, we provide two small demo suites with 
@@ -83,9 +83,9 @@ the same directory layout as the full benchmark suites:
 - `c_demo_benchmarks/` — 12 C benchmarks (6 clang + 6 gcc)
 - `xml_demo_benchmarks/` — 2 XML benchmarks
 
-Any of the runner commands in §5.1–§5.3 can be used on the demo suites by 
+Any of the runner commands in §5.2–§5.4 can be used on the demo suites by 
 simply changing the input path and output directory. For example, the 
-following commands mirror §5.1 on the demo suites:
+following commands mirror §5.2 on the demo suites:
 
 ```bash
 # C demo: baselines (ddmin + W_ddmin) and SADD
@@ -115,7 +115,7 @@ following commands mirror §5.1 on the demo suites:
   -j 8
 ```
 
-The same pattern applies to §5.2 (probabilistic variants) and §5.3 (RQ4 
+The same pattern applies to §5.3 (probabilistic variants) and §5.4 (RQ4 
 ablation) — just replace `c_benchmarks/` with `c_demo_benchmarks/` and 
 adjust the output directory.
 
@@ -129,7 +129,7 @@ Reviewers may also create their own subsets by copying selected
 benchmarks from `c_benchmarks/` or `xml_benchmarks/` into these demo 
 directories.
 
-### 5.1 Ddmin Variants (ddmin, W\_ddmin, SA\_ddmin)
+### 5.2 Ddmin Variants (ddmin, W\_ddmin, SA\_ddmin)
 
 #### C benchmarks
 
@@ -167,7 +167,7 @@ directories.
   -j 8
 ```
 
-### 5.2 Probabilistic Variants (ProbDD, W\_ProbDD, SA\_ProbDD)
+### 5.3 Probabilistic Variants (ProbDD, W\_ProbDD, SA\_ProbDD)
 
 We repeat each probabilistic configuration **5 runs** to mitigate randomness (`-i 5`).
 
@@ -209,7 +209,7 @@ We repeat each probabilistic configuration **5 runs** to mitigate randomness (`-
 
 > **Note**: Runner scripts create subfolders ending with `_0`..`_4` for each probabilistic run.
 
-### 5.3 RQ4 Ablation Study 
+### 5.4 RQ4 Ablation Study 
 
 ```bash
 # Ablation variants for C
