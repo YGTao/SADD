@@ -74,6 +74,61 @@ These are used by our scripts to run **ddmin/ProbDD/WDD** baselines and **SADD**
 We provide parallel runners for C and XML suites. Adjust `-j` to match available cores. Paths below assume **container working dir** `/tmp/WeightDD`.
 > Full reproduction requires ~3,060 single-core hours (~17 days with `-j 8`). See `REQUIREMENTS.md` for per-table estimates.
 
+### 5.0 Quick Demo Runs (Recommended for Sanity Checks)
+
+For reviewers who want to verify that the reducers run correctly without 
+committing to the full experiment, we provide two small demo suites with 
+the same directory layout as the full benchmark suites:
+
+- `c_demo_benchmarks/` — 12 C benchmarks (6 clang + 6 gcc)
+- `xml_demo_benchmarks/` — 2 XML benchmarks
+
+Any of the runner commands in §5.1–§5.3 can be used on the demo suites by 
+simply changing the input path and output directory. For example, the 
+following commands mirror §5.1 on the demo suites:
+
+```bash
+# C demo: baselines (ddmin + W_ddmin) and SADD
+./run_exp_parallel_c.py \
+  -s c_demo_benchmarks/* \
+  -r perses_ddmin perses_wdd hdd_ddmin hdd_wdd \
+  -o result_wdd_c_demo \
+  -j 8
+
+./run_exp_parallel_c.py \
+  -s c_demo_benchmarks/* \
+  -r perses_sadd hdd_sadd \
+  -o result_sadd_c_demo \
+  -j 8
+
+# XML demo: baselines (ddmin + W_ddmin) and SADD
+./run_exp_parallel_xml.py \
+  -s xml_demo_benchmarks/xml-* \
+  -r perses_ddmin perses_wdd hdd_ddmin hdd_wdd \
+  -o result_wdd_xml_demo \
+  -j 8
+
+./run_exp_parallel_xml.py \
+  -s xml_demo_benchmarks/xml-* \
+  -r perses_sadd hdd_sadd \
+  -o result_sadd_xml_demo \
+  -j 8
+```
+
+The same pattern applies to §5.2 (probabilistic variants) and §5.3 (RQ4 
+ablation) — just replace `c_benchmarks/` with `c_demo_benchmarks/` and 
+adjust the output directory.
+
+**Inspecting demo results.** Each run produces per-benchmark logs under 
+the specified output directory (e.g., `result_sadd_c_demo/perses_sadd_0/<benchmark>/`), 
+containing reducer output, query count, elapsed time, and the reduced 
+program. Reviewers can inspect these logs directly to confirm that the 
+reducers are working as expected.
+
+Reviewers may also create their own subsets by copying selected 
+benchmarks from `c_benchmarks/` or `xml_benchmarks/` into these demo 
+directories.
+
 ### 5.1 Ddmin Variants (ddmin, W\_ddmin, SA\_ddmin)
 
 #### C benchmarks
