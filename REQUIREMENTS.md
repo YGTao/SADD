@@ -45,9 +45,15 @@ All single-core times are computed by summing the T(s) column from the correspon
 | Task | Single-core | Wall time (`-j 8`) |
 |---|---|---|
 | Reproduce Tables 2–4 from pre-computed CSVs | — | < 1 minute |
-| Table 2: ddmin variants (§5.1, RQ1/RQ3) | ~722 hours | ~4 days |
-| Table 3: ProbDD variants × 5 runs (§5.2, RQ2/RQ3) | ~1,835 hours | ~10 days |
-| Table 4: ablation study (§5.3, RQ4) | ~500 hours | ~3 days |
+| Table 2: ddmin variants (§5.2, RQ1/RQ3) | ~722 hours | ~4 days |
+| Table 3: ProbDD variants × 5 runs (§5.3, RQ2/RQ3) | ~1,835 hours | ~10 days |
+| Table 4: ablation study (§5.4, RQ4) | ~500 hours | ~3 days |
 | Full reproduction (all RQs) | ~3,060 hours | ~17 days |
 
-We also provide pre-computed experimental results in `csv_paper/` and `result_paper/` for reference.
+For reviewers who want a quick sanity check without committing to the 
+full experiment, small demo suites (`c_demo_benchmarks/` and 
+`xml_demo_benchmarks/`) are provided and run in minutes; see §5.1 of 
+the README.
+
+Pre-computed experimental results are also available in `csv_paper/` 
+and `result_paper/` for reference.
