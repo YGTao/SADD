@@ -315,21 +315,6 @@ Directory structure:
 
 ---
 
-<!-- ## 10. Citation
-
-If you use this artifact in your research, please cite:
-```bibtex
-@inproceedings{sadd2026,
-  title={Structure-Aware Delta Debugging with Geometric-Information Weights},
-  author={Tao, Yonggang and Xue, Jingling},
-  booktitle={Proceedings of the 2026 ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (FSE '26)},
-  year={2026},
-  publisher={ACM}
-}
-```
-
----
-
 ## 10. Reusing and Extending SADD
 
 ### 10.1 Where the Code Is
@@ -381,4 +366,17 @@ follow the layout of any existing benchmark under `c_benchmarks/` or
    For XML inputs, use `run_exp_parallel_xml.py` analogously.
 
 ---
+
+<!-- ## 11. Citation
+
+If you use this artifact in your research, please cite:
+```bibtex
+@inproceedings{sadd2026,
+  title={Structure-Aware Delta Debugging with Geometric-Information Weights},
+  author={Tao, Yonggang and Xue, Jingling},
+  booktitle={Proceedings of the 2026 ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (FSE '26)},
+  year={2026},
+  publisher={ACM}
+}
+```
 
