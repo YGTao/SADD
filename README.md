@@ -330,3 +330,55 @@ If you use this artifact in your research, please cite:
 
 ---
 
+## 10. Reusing and Extending SADD
+
+### 10.1 Where the Code Is
+
+The core of SADD is the structural weight function, implemented in:
+
+`perses-weight-dd/src/org/perses/delta/FanoutWeightProvider.kt`
+
+This class implements the `IWeightProvider` interface consumed by
+`WeightSplitDeltaDebugger` (ddmin-family) and `WeightedDeltaDebugger`
+(ProbDD-family). A small number of additional changes were made at the
+call sites that previously supplied token-count weights, so that SADD's
+structural weights are used instead. The overall delta-debugging control
+logic, tree construction, oracle invocation, and test driver follow
+Perses and WDD without substantive modification.
+
+### 10.2 What the Weight Function Does
+
+`FanoutWeightProvider` computes a structural weight
+
+`W = floor( V · ( 1 + λ_S · S + λ_SB · ( S · φ(B) ) ) ) + 1`
+
+from each element's subtree: `V` (volume = depth × leaves), `S` (decision
+uniformity, corresponding to **U** in the paper — see §4), and `B`
+(effective branching complexity, saturated via `φ(B)`).
+
+### 10.3 How to Extend the Weight Function
+
+- **Tune hyperparameters**: modify `lambdaS`, `lambdaSB`, and `cSaturation`.
+- **Toggle signals**: flip `useEntropy` / `useBranchLoad` (the four
+  prebuilt JARs in `binaries/` each fix a different combination; see §4).
+- **Add a new signal**: extend the `computeMetrics` DFS and add a term
+  to the `factor` expression in `weight(...)`.
+
+### 10.4 How to Run SADD on Your Own Test Input
+
+To apply SADD (or any baseline) to a new bug-triggering input of your own,
+follow the layout of any existing benchmark under `c_benchmarks/` or
+`xml_benchmarks/`:
+
+1. Create a new directory `c_benchmarks/<name>/` (or `xml_benchmarks/<name>/`).
+2. Place your input file and an oracle script that exits with status 0 iff
+   the target property (e.g., the bug) is still triggered. Any existing
+   benchmark directory can be used as a template.
+3. Run the parallel runner:
+
+   `./run_exp_parallel_c.py -s c_benchmarks/<name> -r perses_sadd -o result_new -j 8`
+
+   For XML inputs, use `run_exp_parallel_xml.py` analogously.
+
+---
+
